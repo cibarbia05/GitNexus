@@ -13,6 +13,12 @@ entries. The count arm remains 138 call drops and 168 total drops.
 Earlier entries below retain their original measurement contracts and source pins;
 member-name-only RESOLVES claims in those entries are historical.
 
+## C# indexed array parameters (#4098)
+
+C# `indexElement` moves from VISIBLE-GAP to RESOLVES. The scope query captures
+the `User[]` parameter annotation, which lets `repos[0].Save()` reach exactly
+`Method:Models.cs:User.Save#0` with `Address.Save` present as a decoy.
+
 ## Java receiver and generated dependency ownership (#3955)
 
 Java `indexElement` (`repos[0].save()` with a `User[] repos` parameter) moves

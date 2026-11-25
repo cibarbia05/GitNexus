@@ -170,6 +170,15 @@ const CSHARP_SCOPE_QUERY = `
   type: (predefined_type) @type-binding.type
   name: (identifier) @type-binding.name) @type-binding.parameter
 
+;; The index unwrapper supports single-rank arrays with simple named elements.
+((parameter
+  type: (array_type
+    type: (identifier) @_array_element
+    rank: (array_rank_specifier) @_array_rank) @type-binding.type
+  name: (identifier) @type-binding.name) @type-binding.parameter
+ (#eq? @_array_rank "[]")
+ (#not-eq? @_array_element "dynamic"))
+
 ;; Type bindings — local variable annotations: \`User u = new User();\`
 ;; Typed local with identifier type + \`new X()\` initializer — shape
 ;; matters so \`u\` binds to \`X\` (the constructor call's type), not the
